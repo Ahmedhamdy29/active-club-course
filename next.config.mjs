@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const nextConfig = {
-  images: { formats: ["image/avif", "image/webp"] },
+  output: "export",
+  basePath,
+  trailingSlash: true,
+  images: {
+    loader: "custom",
+    loaderFile: "./lib/image-loader.ts",
+  },
 };
 export default nextConfig;
