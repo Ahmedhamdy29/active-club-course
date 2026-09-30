@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { background: #fff; color: #2B2B2B; }
+
+@layer components {
+  /* Signature element: yellow brush-stroke highlight (echoes the course slides) */
+  .brush { position: relative; display: inline-block; isolation: isolate; padding: .1em .7em; }
+  .brush::before {
+    content: ""; position: absolute; inset: 0; z-index: -1; background: #FFD500;
+    clip-path: polygon(1% 18%, 6% 4%, 30% 10%, 58% 0, 86% 8%, 99% 16%, 97% 52%, 100% 86%, 78% 96%, 50% 100%, 22% 94%, 3% 100%, 0 62%);
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    font-weight: 700; border-radius: .5rem; padding: .85rem 1.6rem; transition: background-color .2s, transform .2s;
+  }
+  .btn-primary { background: #FFD500; color: #1F1F1F; }
+  .btn-primary:hover { background: #E6BF00; }
+  .btn-ghost { border: 2px solid currentColor; }
+  .btn-ghost:hover { background: rgba(255,213,0,.15); }
+  .section { padding-block: 4.5rem; }
+  @media (min-width: 1024px) { .section { padding-block: 6.5rem; } }
+  .container-x { width: 100%; max-width: 72rem; margin-inline: auto; padding-inline: 1.25rem; }
+}
+
+*:focus-visible { outline: 3px solid #FFD500; outline-offset: 3px; }
+
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.hero-rise { animation: rise .7s ease-out both; }
+.hero-rise-2 { animation: rise .7s .12s ease-out both; }
+.hero-rise-3 { animation: rise .7s .24s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-rise, .hero-rise-2, .hero-rise-3 { animation: none; }
+}
+
+details > summary { list-style: none; cursor: pointer; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] .chev { transform: rotate(180deg); }
